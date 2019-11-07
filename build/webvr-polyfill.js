@@ -2583,6 +2583,8 @@ ViewerSelector.prototype.createDialog_ = function (options) {
   var width = 280;
   var dialog = document.createElement('div');
   var s = dialog.style;
+  s.background = '#000000';
+  s.color = '#FFFFFF';
   s.boxSizing = 'border-box';
   s.position = 'fixed';
   s.top = '24px';
@@ -3303,7 +3305,10 @@ CardboardVRDisplay.prototype.submitFrame = function (pose) {
     this.updateBounds_();
     this.distorter_.submitFrame();
   } else if (this.cardboardUI_ && this.layer_) {
-    var canvas = this.layer_.source.getContext('webgl').canvas;
+    var gl = this.layer_.source.getContext('webgl');
+    if (!gl) gl = this.layer_.source.getContext('experimental-webgl');
+    if (!gl) gl = this.layer_.source.getContext('webgl2');
+    var canvas = gl.canvas;
     if (canvas.width != this.lastWidth || canvas.height != this.lastHeight) {
       this.cardboardUI_.onResize();
     }
@@ -3322,6 +3327,8 @@ CardboardVRDisplay.prototype.onOrientationChange_ = function (e) {
 CardboardVRDisplay.prototype.onResize_ = function (e) {
   if (this.layer_) {
     var gl = this.layer_.source.getContext('webgl');
+    if (!gl) gl = this.layer_.source.getContext('experimental-webgl');
+    if (!gl) gl = this.layer_.source.getContext('webgl2');
     var cssProperties = ['position: absolute', 'top: 0', 'left: 0',
     'width: 100vw', 'height: 100vh', 'border: 0', 'margin: 0',
     'padding: 0px', 'box-sizing: content-box'];
