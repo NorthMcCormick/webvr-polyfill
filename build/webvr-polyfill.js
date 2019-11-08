@@ -2583,7 +2583,7 @@ ViewerSelector.prototype.createDialog_ = function (options) {
   var width = 280;
   var dialog = document.createElement('div');
   var s = dialog.style;
-  s.background = '#000000';
+  s.backgroundColor = '#000000';
   s.color = '#FFFFFF';
   s.boxSizing = 'border-box';
   s.position = 'fixed';
@@ -2593,7 +2593,6 @@ ViewerSelector.prototype.createDialog_ = function (options) {
   s.width = width + 'px';
   s.padding = '24px';
   s.overflow = 'hidden';
-  s.background = '#fafafa';
   s.fontFamily = "'Roboto', sans-serif";
   s.boxShadow = '0px 5px 20px #666';
   dialog.appendChild(this.createH1_('Select your viewer'));
